@@ -12,9 +12,10 @@ import (
 
 func main() {
 	e := echo.New()
+	e.Use(middleware.CORSWithConfig(middleware.DefaultCORSConfig))
 	e.Use(middleware.Logger())
 
-	e.GET("/api/image", getImageHandler)
+	e.POST("/api/image", getImageHandler)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }
