@@ -3,12 +3,13 @@ import { Fetcher } from "swr"
 import useSWR from 'swr'
 
 const imageFetcher: Fetcher<string> = (requestUrl: string) => fetch(requestUrl, {mode: 'no-cors', method: "GET"}).then(res => {
-    console.log(res)
-    return res.blob()
-}).then(blob => {
-    console.log(blob)
-    return window.URL.createObjectURL(blob)
-})
+        console.log(res)
+        return res.blob()
+    }).
+    then(blob => {
+        console.log(blob)
+        return window.URL.createObjectURL(blob)
+    })
 
 export default function Reader(){
     const [searchParams] = useSearchParams()
@@ -22,7 +23,7 @@ export default function Reader(){
     return (
         <>
             <p>reader page</p>
-            <p>src: {searchParams.get('src')}</p>
+            <p>src: {srcUrl}</p>
             <img src={data} />
         </>
     )
