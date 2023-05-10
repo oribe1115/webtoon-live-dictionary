@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useSearchParams } from "react-router-dom"
 import { Fetcher } from "swr"
 import useSWR from 'swr'
@@ -12,15 +11,6 @@ const imageFetcher: Fetcher<string> = (requestUrl: string) => fetch(`http://loca
         console.log(blob)
         return window.URL.createObjectURL(blob)
     })
-
-// const imageFetcher: Fetcher<string> = (requestUrl: string) => axios.create({
-//     headers: {
-//         'Access-Control-Allow-Origin': '*'
-//     }
-// }).get(requestUrl).then(res => {
-//     console.log(res.data)
-//     return window.URL.createObjectURL(res.data)
-// })
 
 export default function Reader(){
     const [searchParams] = useSearchParams()
