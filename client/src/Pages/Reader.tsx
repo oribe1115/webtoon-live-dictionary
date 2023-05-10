@@ -3,12 +3,7 @@ import { useSearchParams } from "react-router-dom"
 import { Fetcher } from "swr"
 import useSWR from 'swr'
 
-const imageFetcher: Fetcher<string> = (requestUrl: string) => fetch('http://localhost:3000/api/image', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({url: requestUrl})
+const imageFetcher: Fetcher<string> = (requestUrl: string) => fetch(`http://localhost:3000/api/image?src=${requestUrl}`, {
 }).then(res => {
         console.log(res)
         return res.blob()

@@ -15,24 +15,15 @@ func main() {
 	e.Use(middleware.CORSWithConfig(middleware.DefaultCORSConfig))
 	e.Use(middleware.Logger())
 
-	e.POST("/api/image", getImageHandler)
+	e.GET("/api/image", getImageHandler)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }
 
-type GetImageRequest struct {
-	URL string `json:"url"`
-}
-
 func getImageHandler(c echo.Context) error {
-	var req GetImageRequest
+	targetURL := c.QueryParam("src")
 
-	err := c.Bind(&req)
-	if err != nil {
-		return err
-	}
-
-	contentType, blob, err := getImageBlob(req.URL)
+	contentType, blob, err := getImageBlob(targetURL)
 	if err != nil {
 		return err
 	}
