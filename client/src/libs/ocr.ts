@@ -40,6 +40,7 @@ export const useOCR = () => {
       console.log('Loading image')
       await ocr.loadImage(imageBitmap)
 
+      console.log('Getting text')
       const text = await ocr.getText()
       setOcrText(text)
     } catch (err) {

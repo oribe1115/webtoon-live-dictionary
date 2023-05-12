@@ -8,6 +8,7 @@ export default function Reader() {
 
   const { data, error, isLoading } = useImageFetch(srcUrl)
   const { setImageBlob, ocrText } = useOCR()
+  const execOCR = () => setImageBlob(data)
 
   if (error) {
     console.log(error)
@@ -17,13 +18,12 @@ export default function Reader() {
 
   const imgUrl = data ? window.URL.createObjectURL(data) : ''
 
-  setImageBlob(data)
-
   return (
     <>
       <p>reader page</p>
       <p>src: {srcUrl}</p>
       <img src={imgUrl} />
+      <button onClick={execOCR}>Exec OCR</button>
       <p>OCR text: {ocrText}</p>
     </>
   )
