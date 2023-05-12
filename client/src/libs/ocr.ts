@@ -1,8 +1,8 @@
-import { OCRClient } from 'node_modules/tesseract-wasm/dist'
+import { OCRClient, supportsFastBuild } from 'node_modules/tesseract-wasm/dist'
 import { useEffect, useRef, useState } from 'react'
 
-const wasmPath = 'tesseract-wasm-files/tesseract-core.wasm'
-// const wasmFallbackPath = 'tesseract-wasm-files/tesseract-core-fallback.wasm'
+const wasmCorePath = 'tesseract-wasm-files/tesseract-core.wasm'
+const wasmCoreFallbackPath = 'tesseract-wasm-files/tesseract-core-fallback.wasm'
 const workerPath = 'tesseract-wasm-files/tesseract-worker.js'
 
 export const useOCR = () => {
@@ -48,7 +48,8 @@ export const useOCR = () => {
   }
 
   const newOCRClient = async () => {
-    // TODO: supportsFastBuildを使っての分岐
+    const wasmPath = supportsFastBuild() ? wasmCorePath : wasmCoreFallbackPath
+
     return new OCRClient({
       wasmBinary: await (await fetch(wasmPath)).arrayBuffer(),
       workerURL: workerPath
