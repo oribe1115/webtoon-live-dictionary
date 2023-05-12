@@ -1,0 +1,14 @@
+diff --git a/node_modules/tesseract-wasm/package.json b/node_modules/tesseract-wasm/package.json
+index bd43566..5e7e385 100644
+--- a/node_modules/tesseract-wasm/package.json
++++ b/node_modules/tesseract-wasm/package.json
+@@ -6,7 +6,8 @@
+   "main": "./dist/lib.js",
+   "exports": {
+     ".": "./dist/lib.js",
+-    "./node": "./src/node-worker.js"
++    "./node": "./src/node-worker.js",
++    "./types": "./dist/index.d.ts"
+   },
+   "scripts": {
+     "test": "make test"

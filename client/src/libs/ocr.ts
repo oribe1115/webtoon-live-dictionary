@@ -1,4 +1,4 @@
-import { OCRClient, supportsFastBuild } from 'node_modules/tesseract-wasm/dist'
+import { OCRClient, supportsFastBuild } from 'tesseract-wasm'
 import { useEffect, useRef, useState } from 'react'
 
 const wasmCorePath = 'tesseract-wasm-files/tesseract-core.wasm'
