@@ -30,7 +30,7 @@ export const useOCR = () => {
 
       console.log('Fetching text recognition model')
       await ocrClient.current.loadModel(
-        'https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/main/eng.traineddata'
+        'https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/main/eng.traineddata'
       )
     }
 
