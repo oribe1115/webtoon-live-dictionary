@@ -1,5 +1,6 @@
 import { useImageFetch } from '@/libs/apis'
 import { useOCR } from '@/libs/ocr'
+import { usePreprocess } from '@/libs/preprocess'
 import { useSearchParams } from 'react-router-dom'
 
 export default function Reader() {
@@ -8,6 +9,8 @@ export default function Reader() {
 
   const { data, error, isLoading } = useImageFetch(srcUrl)
   const { setImageBlob, ocrText } = useOCR()
+  const { canvasRef, setImageSrc } = usePreprocess()
+  const execPreProcess = () => setImageSrc(imgUrl)
   const execOCR = () => setImageBlob(data)
 
   if (error) {
@@ -23,6 +26,8 @@ export default function Reader() {
       <p>reader page</p>
       <p>src: {srcUrl}</p>
       <img src={imgUrl} />
+      <button onClick={execPreProcess}>Exec Preprocess</button>
+      <canvas ref={canvasRef} />
       <button onClick={execOCR}>Exec OCR</button>
       <p>OCR text: {ocrText}</p>
     </>
